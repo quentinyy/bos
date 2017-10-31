@@ -7,8 +7,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
-
-    private T model;
+    public static final String HOME = "home";
+    protected T model;
     public T getModel() {
         return model;
     }

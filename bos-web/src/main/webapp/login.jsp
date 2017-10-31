@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,15 +57,18 @@ input[type=password] {
 			style="margin-top: 80px; height: 255px;">
 			<div class="loginFunc">
 				<div id="lbNormal" class="loginFuncMobile">员工登录</div>
+
 			</div>
 			<div class="loginForm">
 				<form id="loginform" name="loginform" method="post" class="niceform"
-					action="">
+					action="userAction_login.action">
+					<s:actionerror/>
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
-						<input id="loginform:idInput" type="text" name="username"
+						<input id="loginform:idInput" type="text" name="name"
 							class="loginFormTdIpt" maxlength="50" />
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
+
 					</div>
 					<div class="forgetPwdLine"></div>
 					<div id="pwdInputLine" class="loginFormIpt showPlaceholder">
@@ -81,7 +85,7 @@ input[type=password] {
 							<img id="loginform:vCode" src="${pageContext.request.contextPath }/validatecode.jsp"
 								onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" />
 						</div>
-						<a href="${pageContext.request.contextPath}/page_common_index.action" id="loginform:j_id19" name="loginform:j_id19">
+						<a onclick="document.getElementById('loginform').submit();" href="#" id="loginform:j_id19" name="loginform:j_id19">
 						<span
 							id="loginform:loginBtn" class="btn btn-login"
 							style="margin-top:-36px;">登录</span>
@@ -91,6 +95,8 @@ input[type=password] {
 			</div>
 		</div>
 	</div>
+
+
 	<div
 		style="width: 900px; height: 50px; position: absolute; text-align: left; left: 50%; top: 50%; margin-left: -450px;; margin-top: 220px;">
 		<span style="color: #488ED5;">Powered By www.itcast.cn</span><span
