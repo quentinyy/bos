@@ -1,16 +1,10 @@
 package cn.me.domain;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "t_user", schema = "bos", catalog = "")
 public class User {
     private int id;
     private String name;
     private Double money;
 
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -19,8 +13,6 @@ public class User {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -29,8 +21,6 @@ public class User {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "money")
     public Double getMoney() {
         return money;
     }
