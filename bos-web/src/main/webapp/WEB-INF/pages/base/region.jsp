@@ -26,6 +26,9 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script
+		src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"
+		type="text/javascript"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addRegionWindow').window("open");
@@ -60,6 +63,8 @@
 		text : '导入',
 		iconCls : 'icon-redo'
 	}];
+
+
 	// 定义列
 	var columns = [ [ {
 		field : 'id',
@@ -126,6 +131,10 @@
 	        height: 400,
 	        resizable:false
 	    });
+		$('#button-import').upload({
+            action: 'regionAction_improtXls.action',
+            name: 'regionFile'
+    	});
 		
 	});
 

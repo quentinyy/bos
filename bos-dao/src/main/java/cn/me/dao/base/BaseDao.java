@@ -13,4 +13,5 @@ public interface BaseDao<T> {
     public List<T> findAll();
     public void execUpdate(String queryName,Object...objects);
     public void pageQuery(PageBean pageBean);
+    public void saveOrUpdate(T entity);
 }

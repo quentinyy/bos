@@ -31,6 +31,10 @@
             <result name="list">/WEB-INF/pages/base/staff.jsp</result>
             <allowed-methods>add,edit,delete,restore,queryPage</allowed-methods>
         </action>
+        <action name="regionAction_*" class="regionAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/region.jsp</result>
+            <allowed-methods>improtXls</allowed-methods>
+        </action>
     </package>
 
 </struts>
