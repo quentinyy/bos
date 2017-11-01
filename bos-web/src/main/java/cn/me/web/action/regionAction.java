@@ -61,4 +61,10 @@ public class regionAction extends BaseAction<Region>{
         regionService.saveBeatch(regionList);
         return NONE;
     }
+
+    public String queryPage() throws Exception {
+        regionService.queryPage(pageBean);
+        java2json(pageBean,new String[]{"subareas"});
+        return NONE;
+    }
 }

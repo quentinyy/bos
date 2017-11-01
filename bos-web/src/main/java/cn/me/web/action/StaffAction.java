@@ -34,17 +34,9 @@ public class StaffAction extends BaseAction<Staff>{
     }
 
     public String queryPage() throws Exception {
-        PageBean pageBean = new PageBean();
-        pageBean.setCurrentPage(page);
-        pageBean.setPageSize(rows);
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);
-        pageBean.setDetachedCriteria(detachedCriteria);
+
         staffService.queryPage(pageBean);
-        JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"currentPage","detachedCriteria","pageSize"});
-        String json = JSONObject.fromObject(pageBean,jsonConfig).toString();
-        ServletActionContext.getResponse().setContentType("application/json;charset=UTF-8");
-        ServletActionContext.getResponse().getWriter().write(json);
+        java2json(pageBean,new String[]{"currentPage","detachedCriteria","pageSize"});
         return NONE;
     }
 

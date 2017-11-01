@@ -33,7 +33,7 @@
         </action>
         <action name="regionAction_*" class="regionAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/region.jsp</result>
-            <allowed-methods>improtXls</allowed-methods>
+            <allowed-methods>improtXls,queryPage</allowed-methods>
         </action>
     </package>
 
