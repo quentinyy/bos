@@ -87,8 +87,25 @@
 		
 		$("#btnEp").click(function(){
 
-			alert("修改密码");
-		});
+            var v = $("#editPwdForm").form("validate");
+            if(v){
+				var pwd = $('#txtNewPass').val();
+				var pwd2 = $('#txtRePass').val();
+				console.log(pwd+'-'+pwd2);
+				if(pwd==pwd2){
+					$.post('${pageContext.request.contextPath}/userAction_editPwd',{'password':pwd},function (data) {
+						console.log(data)
+					    if(data=='1'){
+							$('#editPwdWindow').window('close');
+						}else {
+							$.messager.alert("提示信息","密码修改失败",'warning');
+						}
+						}
+					);
+				}else {
+					$.messager.alert("提示信息","两次密码不一致",'warning');
+				}
+			}});
 	});
 
 	function onClick(event, treeId, treeNode, clickFlag) {
@@ -230,17 +247,19 @@
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+				<form id="editPwdForm">
                 <table cellpadding=3>
                     <tr>
                         <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
+                        <td><input id="txtNewPass" data-options="validType:'length[4,6]'" type="Password" class="txt01 easyui-validatebox" required="true"/></td>
                     </tr>
                     <tr>
                         <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
+                        <td><input id="txtRePass" data-options="validType:'length[4,6]'" type="Password" class="txt01 easyui-validatebox" required="true"/></td>
                     </tr>
                 </table>
-            </div>
+				</form>
+			</div>
             <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
                 <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a> 
                 <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>

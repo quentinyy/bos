@@ -2,8 +2,10 @@ package cn.me.web.action;
 
 import cn.me.domain.User;
 import cn.me.service.UserService;
+import cn.me.utils.MD5Utils;
 import cn.me.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,5 +44,20 @@ public class UserAction extends BaseAction<User>{
     public String loginOut() throws Exception {
         ActionContext.getContext().getSession().remove("loginUser");
         return LOGIN;
+    }
+    public String editPwd() throws Exception {
+        User user = (User) ActionContext.getContext().getSession().get("loginUser");
+        String f="1";
+        try {
+            String pwd = MD5Utils.md5(model.getPassword());
+            userService.editPwd(pwd,user.getId());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            f="0";
+        }
+        ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+        ServletActionContext.getResponse().getWriter().write(f);
+        return NONE;
     }
 }

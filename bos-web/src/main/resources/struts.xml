@@ -25,7 +25,7 @@
         <action name="userAction_*" class="userAction" method="{1}">
             <result name="login">/login.jsp</result>
             <result name="home">/index.jsp</result>
-            <allowed-methods>login,loginOut</allowed-methods>
+            <allowed-methods>login,loginOut,editPwd</allowed-methods>
         </action>
         <action name="staffAction_*" class="staffAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/staff.jsp</result>
