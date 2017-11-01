@@ -37,11 +37,41 @@
 	}
 	
 	function doDelete(){
-		alert("删除...");
+		var rows = $('#grid').datagrid("getSelections");
+
+		if(rows.length==0){
+		    $.messager.alert("提示信息","请先选择","warning");
+		}else {
+		    $.messager.confirm("作废确认","你确认要作废吗",function (r) {
+				if(r){
+                    var array = new Array();
+                    for (var i=0;i<rows.length;i++){
+                        array.push(rows[i].id);
+                    }
+                    var ids = array.join(',');
+                    location.href="${pageContext.request.contextPath}/staffAction_delete?ids="+ids;
+				}
+            })
+		}
 	}
 	
 	function doRestore(){
-		alert("将取派员还原...");
+        var rows = $('#grid').datagrid("getSelections");
+
+        if(rows.length==0){
+            $.messager.alert("提示信息","请先选择","warning");
+        }else {
+            $.messager.confirm("恢复确认","你确认要恢复吗",function (r) {
+                if(r){
+                    var array = new Array();
+                    for (var i=0;i<rows.length;i++){
+                        array.push(rows[i].id);
+                    }
+                    var ids = array.join(',');
+                    location.href="${pageContext.request.contextPath}/staffAction_restore?ids="+ids;
+                }
+            })
+        }
 	}
 	//工具栏
 	var toolbar = [ {
@@ -129,7 +159,7 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/staff.json",
+			url : "${pageContext.request.contextPath}/staffAction_queryPage.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -145,11 +175,20 @@
 	        height: 400,
 	        resizable:false
 	    });
-		
+        $('#editStaffWindow').window({
+            title: '添加取派员',
+            width: 400,
+            modal: true,
+            shadow: true,
+            closed: true,
+            height: 400,
+            resizable:false
+        });
 	});
 
 	function doDblClickRow(rowIndex, rowData){
-		alert("双击表格数据...");
+		$('#editStaffWindow').window('open');
+		$('#editStaffForm').form('load',rowData);
 	}
 </script>	
 </head>
@@ -195,10 +234,6 @@
 					</tr>
 					<!-- TODO 这里完善收派员添加 table -->
 					<tr>
-						<td>取派员编号</td>
-						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
 						<td>姓名</td>
 						<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
 					</tr>
@@ -223,6 +258,72 @@
 						</td>
 					</tr>
 					</table>
+			</form>
+		</div>
+	</div>
+	<div class="easyui-window" title="修改收派员" id="editStaffWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
+			<div class="datagrid-toolbar">
+				<a id="edit" icon="icon-edit" href="#" class="easyui-linkbutton" plain="true" >修改</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+            $(function(){
+                //为保存按钮绑定事件
+                $("#edit").click(function(){
+                    //表单校验，如果通过，提交表单
+                    var v = $("#editStaffForm").form("validate");
+                    if(v){
+                        //$("#addStaffForm").form("submit");
+                        $("#editStaffForm").submit();
+                    }
+                });
+
+                var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+                //扩展手机号校验规则
+                $.extend($.fn.validatebox.defaults.rules, {
+                    telephone: {
+                        validator: function(value,param){
+                            return reg.test(value);
+                        },
+                        message: '手机号输入有误！'
+                    }
+                });
+            });
+		</script>
+		<div region="center" style="overflow:auto;padding:5px;" border="false">
+			<form id="editStaffForm" action="staffAction_edit.action" method="post">
+				<input type="hidden" name="id">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">收派员信息</td>
+					</tr>
+					<!-- TODO 这里完善收派员添加 table -->
+					<tr>
+						<td>姓名</td>
+						<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>手机</td>
+						<td><input type="text" name="telephone" data-options="validType:'telephone'" class="easyui-validatebox" data required="true"/></td>
+					</tr>
+
+					<tr>
+						<td>单位</td>
+						<td><input type="text" name="station" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="checkbox" name="haspda" value="1" />
+							是否有PDA</td>
+					</tr>
+					<tr>
+						<td>取派标准</td>
+						<td>
+							<input type="text" name="standard" class="easyui-validatebox" required="true"/>
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
 	</div>

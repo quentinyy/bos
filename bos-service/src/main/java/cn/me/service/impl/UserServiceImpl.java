@@ -18,8 +18,7 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    public String editPwd(String password,String id) {
+    public void editPwd(String password, String id) {
         userDao.execUpdate("user.editPwd",password,id);
-        return null;
     }
 }

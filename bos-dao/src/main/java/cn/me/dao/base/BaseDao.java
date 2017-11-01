@@ -1,5 +1,7 @@
 package cn.me.dao.base;
 
+import cn.me.utils.PageBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,4 +12,5 @@ public interface BaseDao<T> {
     public T findById(Serializable id);
     public List<T> findAll();
     public void execUpdate(String queryName,Object...objects);
+    public void pageQuery(PageBean pageBean);
 }

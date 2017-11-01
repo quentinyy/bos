@@ -1,8 +1,13 @@
 package cn.me.dao.base.impl;
 
 import cn.me.dao.base.BaseDao;
+import cn.me.utils.PageBean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.RowCountProjection;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -56,5 +61,20 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>{
             query.setParameter(i++,obj);
         }
         query.executeUpdate();
+    }
+
+    public void pageQuery(PageBean pageBean) {
+        int currentPage = pageBean.getCurrentPage();
+        int pageSize = pageBean.getPageSize();
+        DetachedCriteria criteria = pageBean.getDetachedCriteria();
+        criteria.setProjection(Projections.rowCount());
+        List<Long> rowCount = (List<Long>) this.getHibernateTemplate().findByCriteria(criteria);
+        Long total = rowCount.get(0);
+        pageBean.setTotal(total.intValue());
+        criteria.setProjection(null);
+        int firstResut = (currentPage-1)*pageSize;
+        int maxResult = pageSize;
+        List rows = this.getHibernateTemplate().findByCriteria(criteria, firstResut, maxResult);
+        pageBean.setRows(rows);
     }
 }
