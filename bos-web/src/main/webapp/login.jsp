@@ -62,10 +62,10 @@ input[type=password] {
 			<div class="loginForm">
 				<form id="loginform" name="loginform" method="post" class="niceform"
 					action="userAction_login.action">
-					<s:actionerror/>
+
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
-						<input id="loginform:idInput" type="text" name="name"
+						<input id="loginform:idInput" type="text" name="username"
 							class="loginFormTdIpt" maxlength="50" />
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
 
@@ -90,6 +90,9 @@ input[type=password] {
 							id="loginform:loginBtn" class="btn btn-login"
 							style="margin-top:-36px;">登录</span>
 						</a>
+                        <div align="center">
+                            <span style="color: red"><s:actionerror/></span>
+                        </div>
 					</div>
 				</form>
 			</div>
