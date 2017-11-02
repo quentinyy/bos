@@ -11,4 +11,6 @@ public interface SubareaService {
     void queryPage(PageBean pageBean);
 
     List<Subarea> findAll();
+
+    List<Subarea> findSubareaNotAssion();
 }

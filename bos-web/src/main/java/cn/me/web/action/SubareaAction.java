@@ -88,4 +88,10 @@ public class SubareaAction extends BaseAction<Subarea>{
         workbook.write(out);
         return NONE;
     }
+
+    public String ajaxlist() throws Exception {
+        List<Subarea> list = subareaService.findSubareaNotAssion();
+        java2json(list,new String[]{"decidedzone","region"});
+        return NONE;
+    }
 }

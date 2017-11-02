@@ -29,7 +29,7 @@
         </action>
         <action name="staffAction_*" class="staffAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/staff.jsp</result>
-            <allowed-methods>add,edit,delete,restore,queryPage</allowed-methods>
+            <allowed-methods>add,edit,ajaxlist,delete,restore,queryPage</allowed-methods>
         </action>
         <action name="regionAction_*" class="regionAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/region.jsp</result>
@@ -37,7 +37,11 @@
         </action>
         <action name="subareaAction_*" class="subareaAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
-            <allowed-methods>add,queryPage,exportXls</allowed-methods>
+            <allowed-methods>add,queryPage,exportXls,ajaxlist</allowed-methods>
+        </action>
+        <action name="decidezoneAction_*" class="decidezoneAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
+            <allowed-methods>add,queryPage</allowed-methods>
         </action>
     </package>
 

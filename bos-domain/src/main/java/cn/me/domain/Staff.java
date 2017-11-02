@@ -20,6 +20,7 @@ public class Staff implements java.io.Serializable {
 	private String standard;
 	private Set decidedzones = new HashSet(0);
 
+
 	// Constructors
 
 	/** default constructor */
@@ -61,7 +62,6 @@ public class Staff implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getTelephone() {
 		return this.telephone;
 	}

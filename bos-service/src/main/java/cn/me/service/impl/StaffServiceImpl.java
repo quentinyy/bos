@@ -5,9 +5,14 @@ import cn.me.domain.Staff;
 import cn.me.service.StaffService;
 import cn.me.utils.PageBean;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -55,6 +60,13 @@ public class StaffServiceImpl implements StaffService{
                 staffDao.execUpdate("staff.restore",id);
             }
         }
+    }
+
+    public List<Staff> findListNotDel() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Staff.class);
+        dc.add(Restrictions.eq("deltag","0"));
+        List<Staff> staffList = staffDao.findByCriteria(dc);
+        return staffList;
     }
 
 }

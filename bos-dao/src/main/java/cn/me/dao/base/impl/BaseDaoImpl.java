@@ -5,9 +5,7 @@ import cn.me.utils.PageBean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.RowCountProjection;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -81,5 +79,10 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>{
 
     public void saveOrUpdate(T entity) {
         this.getHibernateTemplate().saveOrUpdate(entity);
+    }
+
+    public List<T> findByCriteria(DetachedCriteria detachedCriteria) {
+        List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
+        return list;
     }
 }

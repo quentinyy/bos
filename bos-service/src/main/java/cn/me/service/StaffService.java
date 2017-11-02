@@ -3,6 +3,8 @@ package cn.me.service;
 import cn.me.domain.Staff;
 import cn.me.utils.PageBean;
 
+import java.util.List;
+
 public interface StaffService {
 
     String add(Staff model);
@@ -14,4 +16,6 @@ public interface StaffService {
     void delete(String ids);
 
     void restore(String ids);
+
+    List<Staff> findListNotDel();
 }

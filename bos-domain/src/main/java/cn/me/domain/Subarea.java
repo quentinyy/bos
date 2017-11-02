@@ -43,7 +43,10 @@ public class Subarea implements java.io.Serializable {
 	}
 
 	// Property accessors
-
+	@SuppressWarnings("JpaAttributeMemberSignatureInspection")
+	public String getsubareaid(){
+		return id;
+	}
 	public String getId() {
 		return this.id;
 	}

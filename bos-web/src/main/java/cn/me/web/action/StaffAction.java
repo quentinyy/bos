@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 @Scope("prototype")
 public class StaffAction extends BaseAction<Staff>{
@@ -36,7 +38,7 @@ public class StaffAction extends BaseAction<Staff>{
     public String queryPage() throws Exception {
 
         staffService.queryPage(pageBean);
-        java2json(pageBean,new String[]{"currentPage","detachedCriteria","pageSize"});
+        java2json(pageBean,new String[]{"currentPage","detachedCriteria","pageSize","decidedzones"});
         return NONE;
     }
 
@@ -60,5 +62,11 @@ public class StaffAction extends BaseAction<Staff>{
         System.out.println(ids);
         staffService.restore(ids);
         return LIST;
+    }
+
+    public String ajaxlist() throws Exception {
+        List<Staff> list = staffService.findListNotDel();
+        java2json(list,new String[]{"decidedzones"});
+        return NONE;
     }
 }
