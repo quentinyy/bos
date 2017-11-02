@@ -67,4 +67,21 @@ public class regionAction extends BaseAction<Region>{
         java2json(pageBean,new String[]{"subareas"});
         return NONE;
     }
+
+    private String q;
+
+    public void setQ(String q) {
+        this.q = q;
+    }
+
+    public String ajaxList() throws Exception {
+        List<Region> list;
+        if(StringUtils.isNotBlank(q)){
+            list = regionService.findByQ(q);
+        }else {
+            list = regionService.findAll();
+        }
+        java2json(list,new String[]{"currentPage","detachedCriteria","pageSize","subareas"});
+        return NONE;
+    }
 }

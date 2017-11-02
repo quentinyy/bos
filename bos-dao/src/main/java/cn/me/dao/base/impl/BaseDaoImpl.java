@@ -74,6 +74,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>{
         criteria.setProjection(null);
         int firstResut = (currentPage-1)*pageSize;
         int maxResult = pageSize;
+        criteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
         List rows = this.getHibernateTemplate().findByCriteria(criteria, firstResut, maxResult);
         pageBean.setRows(rows);
     }

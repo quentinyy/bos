@@ -1,6 +1,5 @@
 package cn.me.web.action.base;
 
-import cn.me.domain.Staff;
 import cn.me.utils.PageBean;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -26,7 +25,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
     public void setRows(int rows) {
         this.pageBean.setPageSize(rows);
     }
-    private DetachedCriteria detachedCriteria = null;
+    DetachedCriteria detachedCriteria = null;
     protected T model;
     public T getModel() {
         return model;

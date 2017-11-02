@@ -9,4 +9,8 @@ public interface RegionService {
     void saveBeatch(List<Region> regionList);
 
     void queryPage(PageBean pageBean);
+
+    List<Region> findAll();
+
+    List<Region> findByQ(String q);
 }

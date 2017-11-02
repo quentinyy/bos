@@ -1,5 +1,6 @@
 package cn.me.domain;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class Region implements java.io.Serializable {
 	private String shortcode;
 	private String citycode;
 	private Set subareas = new HashSet(0);
+
 
 	// Constructors
 
@@ -46,6 +48,10 @@ public class Region implements java.io.Serializable {
 
 	// Property accessors
 
+	@SuppressWarnings("JpaAttributeMemberSignatureInspection")
+	public String getName(){
+		return this.province+"-"+this.city+"-"+this.district;
+	}
 	public String getId() {
 		return this.id;
 	}
@@ -109,5 +115,6 @@ public class Region implements java.io.Serializable {
 	public void setSubareas(Set subareas) {
 		this.subareas = subareas;
 	}
+
 
 }
