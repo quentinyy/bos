@@ -31,4 +31,15 @@ public class DecidezoneAction extends BaseAction<Decidedzone>{
                 "pageSize","subareas","decidedzones"});
         return NONE;
     }
+
+    private String[] customerIds;
+
+    public void setCustomerIds(String[] customerIds) {
+        this.customerIds = customerIds;
+    }
+
+    public String associate() throws Exception {
+        decidezoneService.associate(model.getId(),customerIds);
+        return LIST;
+    }
 }

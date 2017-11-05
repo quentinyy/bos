@@ -9,4 +9,6 @@ public interface IDecidezoneService {
     void save(Decidedzone model, String[] subareaid);
 
     void queryPage(PageBean pageBean);
+
+    void associate(String id, String[] customerIds);
 }

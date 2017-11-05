@@ -13,8 +13,8 @@ public class CustomerServiceImpl implements ICustomerService{
     @Autowired
     private ICustomerDao customerDao;
     @Override
-    public List<Customer> findCustomerAssociate() {
-        List<Customer> list = customerDao.findCustomerAssociate();
+    public List<Customer> findCustomerAssociate(Customer model) {
+        List<Customer> list = customerDao.findCustomerAssociate(model.getDecidedzoneId());
         return list;
     }
 

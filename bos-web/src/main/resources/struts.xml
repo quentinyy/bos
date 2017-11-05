@@ -37,11 +37,11 @@
         </action>
         <action name="subareaAction_*" class="subareaAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
-            <allowed-methods>add,queryPage,exportXls,ajaxlist,findAssociateSubarea</allowed-methods>
+            <allowed-methods>add,queryPage,exportXls,ajaxlist,findSubareaAssociate,findSubareaNotAssociate</allowed-methods>
         </action>
         <action name="decidezoneAction_*" class="decidezoneAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
-            <allowed-methods>add,queryPage</allowed-methods>
+            <allowed-methods>add,queryPage,associate</allowed-methods>
         </action>
         <action name="customerAction_*" class="customerAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>

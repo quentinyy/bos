@@ -34,14 +34,13 @@ public class SubareaServiceImpl implements ISubareaService {
         DetachedCriteria dc = DetachedCriteria.forClass(Subarea.class);
         dc.add(Restrictions.isNull("decidedzone"));
         List<Subarea> list = subareaDao.findByCriteria(dc);
-
         return list;
     }
 
     @Override
-    public List<Subarea> findSubareaAssion() {
+    public List<Subarea> findSubareaAssociate(String id) {
         DetachedCriteria dc = DetachedCriteria.forClass(Subarea.class);
-        dc.add(Restrictions.isNotNull("decidedzone"));
+        dc.add(Restrictions.eq("decidedzone.id",id));
         List<Subarea> list = subareaDao.findByCriteria(dc);
         return list;
     }

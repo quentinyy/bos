@@ -19,7 +19,7 @@ public class CustomerAction extends BaseAction<Customer>{
 
     public String findCustomerAssociate() throws Exception {
 
-        List<Customer> list = customerService.findCustomerAssociate();
+        List<Customer> list = customerService.findCustomerAssociate(model);
         java2json(list,new String[]{""});
         return NONE;
     }

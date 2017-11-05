@@ -44,7 +44,26 @@
 	}
 	
 	function doAssociations(){
-		$('#customerWindow').window('open');
+        $('#noassociationSelect').empty();
+        $('#associationSelect').empty();
+        var row = $('#grid').datagrid("getSelections");
+        if(row.length!=1){
+            $.messager.alert("提示信息","请选择一个定区操作","warning");
+		}else{
+            $('#customerWindow').window('open');
+
+            $.post('customerAction_findCustomerNotAssociate.action',function (data) {
+                for(var i=0;i<data.length;i++){
+                    $('#noassociationSelect').append("<option value='"+data[i].id+"'>"+data[i].name+"("+data[i].telephone+")"+"</option>");
+                }
+            });
+            $.post('customerAction_findCustomerAssociate.action?decidedzoneId='+row[0].id,function (data) {
+                for(var i=0;i<data.length;i++){
+                    $('#associationSelect').append("<option value='"+data[i].id+"'>"+data[i].name+"("+data[i].telephone+")"+"</option>");
+                }
+            });
+
+		}
 	}
 	
 	//工具栏
@@ -158,14 +177,13 @@
 		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	function doDblClickRow(index,data){
 		$('#association_subarea').datagrid( {
 			fit : true,
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "subareaAction_associateSubarea.action",
+			url : "subareaAction_findSubareaAssociate.action?decidedzone.id="+data.id,
 			columns : [ [{
 				field : 'id',
 				title : '分拣编号',
@@ -227,7 +245,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "customerAction_findCustomerAssociate.action",
+			url : "customerAction_findCustomerAssociate.action?decidedzoneId="+data.id,
 			columns : [[{
 				field : 'id',
 				title : '客户编号',
@@ -352,7 +370,7 @@
 	<!-- 关联客户窗口 -->
 	<div class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true" minimizable="false" maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzone_assigncustomerstodecidedzone.action" method="post">
+			<form id="customerForm" action="${pageContext.request.contextPath }/decidezoneAction_associate.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="3">关联客户</td>
@@ -365,6 +383,23 @@
 						<td>
 							<input type="button" value="》》" id="toRight"><br/>
 							<input type="button" value="《《" id="toLeft">
+							<script type="text/javascript">
+								$(function () {
+									$('#toRight').click(function () {
+										$('#associationSelect').append($('#noassociationSelect option:selected'));
+                                    });
+                                    $('#toLeft').click(function () {
+                                        $('#noassociationSelect').append($('#associationSelect option:selected'));
+                                    });
+                                    $('#associationBtn').click(function () {
+                                        var row = $('#grid').datagrid("getSelections");
+                                        $('#customerDecidedZoneId').val(row[0].id);
+                                        $('#associationSelect option').attr("selected","selected");
+                                        $("#customerForm").submit();
+                                    })
+
+                                })
+							</script>
 						</td>
 						<td>
 							<select id="associationSelect" name="customerIds" multiple="multiple" size="10"></select>

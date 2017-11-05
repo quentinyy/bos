@@ -14,5 +14,5 @@ public interface ISubareaService {
 
     List<Subarea> findSubareaNotAssion();
 
-    List<Subarea> findSubareaAssion();
+    List<Subarea> findSubareaAssociate(String id);
 }

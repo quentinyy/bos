@@ -8,5 +8,7 @@ import java.util.List;
 @WebService
 public interface ICustomerDao {
     List<Customer> findCustomerNotAssociate();
-    List<Customer> findCustomerAssociate();
+    List<Customer> findCustomerAssociate(String decidedzzone_id);
+
+    void associate(String id, String[] customerIds);
 }

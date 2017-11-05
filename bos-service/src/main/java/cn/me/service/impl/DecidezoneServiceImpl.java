@@ -1,5 +1,6 @@
 package cn.me.service.impl;
 
+import cn.me.crm.ICustomerDao;
 import cn.me.dao.IDecidezoneDao;
 import cn.me.dao.ISubareaDao;
 import cn.me.domain.Decidedzone;
@@ -18,6 +19,8 @@ public class DecidezoneServiceImpl implements IDecidezoneService {
     private IDecidezoneDao DecidezoneDao;
     @Autowired
     private ISubareaDao subareaDao;
+    @Autowired
+    private ICustomerDao customerDao;
     public void save(Decidedzone model, String[] subareaid) {
             DecidezoneDao.save(model);
         for (String id:subareaid
@@ -30,5 +33,10 @@ public class DecidezoneServiceImpl implements IDecidezoneService {
 
     public void queryPage(PageBean pageBean) {
         DecidezoneDao.pageQuery(pageBean);
+    }
+
+    @Override
+    public void associate(String id, String[] customerIds) {
+        customerDao.associate(id,customerIds);
     }
 }

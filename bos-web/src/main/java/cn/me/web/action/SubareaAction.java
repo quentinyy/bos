@@ -94,9 +94,9 @@ public class SubareaAction extends BaseAction<Subarea>{
         java2json(list,new String[]{"decidedzone","region"});
         return NONE;
     }
-    public String findAssociateSubarea(){
-        List<Subarea> list = subareaService.findSubareaAssion();
-        java2json(list,new String[]{"decidedzone","region"});
+    public String findSubareaAssociate()throws Exception{
+        List<Subarea> list = subareaService.findSubareaAssociate(model.getDecidedzone().getId());
+        java2json(list,new String[]{"decidedzone","subareas"});
         return NONE;
     }
 }
