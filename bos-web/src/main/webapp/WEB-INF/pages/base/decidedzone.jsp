@@ -165,7 +165,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_subarea.json",
+			url : "subareaAction_associateSubarea.action",
 			columns : [ [{
 				field : 'id',
 				title : '分拣编号',
@@ -227,7 +227,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_customer.json",
+			url : "customerAction_findCustomerAssociate.action",
 			columns : [[{
 				field : 'id',
 				title : '客户编号',

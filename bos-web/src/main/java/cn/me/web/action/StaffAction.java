@@ -1,13 +1,8 @@
 package cn.me.web.action;
 
 import cn.me.domain.Staff;
-import cn.me.service.StaffService;
-import cn.me.utils.PageBean;
+import cn.me.service.IStaffService;
 import cn.me.web.action.base.BaseAction;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,7 +13,7 @@ import java.util.List;
 @Scope("prototype")
 public class StaffAction extends BaseAction<Staff>{
     @Autowired
-    private StaffService staffService;
+    private IStaffService staffService;
 
     public String add() throws Exception {
         String row = staffService.add(model);

@@ -1,7 +1,8 @@
 package cn.me.web.action;
 
+import cn.me.crm.ICustomerDao;
 import cn.me.domain.User;
-import cn.me.service.UserService;
+import cn.me.service.IUserService;
 import cn.me.utils.MD5Utils;
 import cn.me.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
@@ -21,8 +22,7 @@ public class UserAction extends BaseAction<User>{
     }
 
     @Autowired
-    private UserService userService;
-
+    private IUserService userService;
     public String login() throws Exception {
         if(checkcode==null | checkcode ==""){
             addActionError("请输入验证码");

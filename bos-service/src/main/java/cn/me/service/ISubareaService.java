@@ -5,7 +5,7 @@ import cn.me.utils.PageBean;
 
 import java.util.List;
 
-public interface SubareaService {
+public interface ISubareaService {
     void add(Subarea model);
 
     void queryPage(PageBean pageBean);
@@ -13,4 +13,6 @@ public interface SubareaService {
     List<Subarea> findAll();
 
     List<Subarea> findSubareaNotAssion();
+
+    List<Subarea> findSubareaAssion();
 }

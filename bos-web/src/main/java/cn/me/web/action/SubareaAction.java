@@ -2,7 +2,7 @@ package cn.me.web.action;
 
 import cn.me.domain.Region;
 import cn.me.domain.Subarea;
-import cn.me.service.SubareaService;
+import cn.me.service.ISubareaService;
 import cn.me.utils.FileUtils;
 import cn.me.web.action.base.BaseAction;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ import java.util.List;
 @Scope("prototype")
 public class SubareaAction extends BaseAction<Subarea>{
     @Autowired
-    private SubareaService subareaService;
+    private ISubareaService subareaService;
 
     public String add() throws Exception {
         subareaService.add(model);
@@ -91,6 +91,11 @@ public class SubareaAction extends BaseAction<Subarea>{
 
     public String ajaxlist() throws Exception {
         List<Subarea> list = subareaService.findSubareaNotAssion();
+        java2json(list,new String[]{"decidedzone","region"});
+        return NONE;
+    }
+    public String findAssociateSubarea(){
+        List<Subarea> list = subareaService.findSubareaAssion();
         java2json(list,new String[]{"decidedzone","region"});
         return NONE;
     }

@@ -1,8 +1,8 @@
 package cn.me.service.impl;
 
-import cn.me.dao.RegionDao;
+import cn.me.dao.IRegionDao;
 import cn.me.domain.Region;
-import cn.me.service.RegionService;
+import cn.me.service.IRegionService;
 import cn.me.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Service
 @Transactional
-public class RegionServiceImpl implements RegionService{
+public class RegionServiceImpl implements IRegionService {
     @Autowired
-    private RegionDao regionDao;
+    private IRegionDao regionDao;
     public void saveBeatch(List<Region> regionList) {
         for (Region region:regionList
              ) {

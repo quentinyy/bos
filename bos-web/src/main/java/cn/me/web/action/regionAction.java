@@ -1,7 +1,7 @@
 package cn.me.web.action;
 
 import cn.me.domain.Region;
-import cn.me.service.RegionService;
+import cn.me.service.IRegionService;
 import cn.me.utils.PinYin4jUtils;
 import cn.me.web.action.base.BaseAction;
 import org.apache.commons.lang.StringUtils;
@@ -22,7 +22,7 @@ import java.util.List;
 public class regionAction extends BaseAction<Region>{
     private File regionFile;
     @Autowired
-    private RegionService regionService;
+    private IRegionService regionService;
 
     public void setRegionFile(File regionFile) {
         this.regionFile = regionFile;

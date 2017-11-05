@@ -5,7 +5,7 @@ import cn.me.utils.PageBean;
 
 import java.util.List;
 
-public interface RegionService {
+public interface IRegionService {
     void saveBeatch(List<Region> regionList);
 
     void queryPage(PageBean pageBean);

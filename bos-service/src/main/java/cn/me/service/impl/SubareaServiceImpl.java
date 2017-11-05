@@ -1,8 +1,8 @@
 package cn.me.service.impl;
 
-import cn.me.dao.SubareaDao;
+import cn.me.dao.ISubareaDao;
 import cn.me.domain.Subarea;
-import cn.me.service.SubareaService;
+import cn.me.service.ISubareaService;
 import cn.me.utils.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -14,9 +14,9 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SubareaServiceImpl implements SubareaService{
+public class SubareaServiceImpl implements ISubareaService {
     @Autowired
-    private SubareaDao subareaDao;
+    private ISubareaDao subareaDao;
 
     public void add(Subarea model) {
         subareaDao.save(model);
@@ -35,6 +35,14 @@ public class SubareaServiceImpl implements SubareaService{
         dc.add(Restrictions.isNull("decidedzone"));
         List<Subarea> list = subareaDao.findByCriteria(dc);
 
+        return list;
+    }
+
+    @Override
+    public List<Subarea> findSubareaAssion() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Subarea.class);
+        dc.add(Restrictions.isNotNull("decidedzone"));
+        List<Subarea> list = subareaDao.findByCriteria(dc);
         return list;
     }
 }

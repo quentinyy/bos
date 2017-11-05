@@ -1,27 +1,25 @@
 package cn.me.service.impl;
 
-import cn.me.dao.DecidezoneDao;
-import cn.me.dao.SubareaDao;
+import cn.me.dao.IDecidezoneDao;
+import cn.me.dao.ISubareaDao;
 import cn.me.domain.Decidedzone;
 import cn.me.domain.Subarea;
-import cn.me.service.DecidezoneService;
+import cn.me.service.IDecidezoneService;
 import cn.me.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 
 @Service
 @Transactional
-public class DecidezoneServiceImpl implements DecidezoneService{
+public class DecidezoneServiceImpl implements IDecidezoneService {
     @Autowired
-    private DecidezoneDao decidezoneDao;
+    private IDecidezoneDao DecidezoneDao;
     @Autowired
-    private SubareaDao subareaDao;
+    private ISubareaDao subareaDao;
     public void save(Decidedzone model, String[] subareaid) {
-            decidezoneDao.save(model);
+            DecidezoneDao.save(model);
         for (String id:subareaid
              ) {
             Subarea subarea = subareaDao.findById(id);
@@ -31,6 +29,6 @@ public class DecidezoneServiceImpl implements DecidezoneService{
     }
 
     public void queryPage(PageBean pageBean) {
-        decidezoneDao.pageQuery(pageBean);
+        DecidezoneDao.pageQuery(pageBean);
     }
 }

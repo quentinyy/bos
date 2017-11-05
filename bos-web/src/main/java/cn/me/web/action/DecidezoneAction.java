@@ -1,7 +1,7 @@
 package cn.me.web.action;
 
 import cn.me.domain.Decidedzone;
-import cn.me.service.DecidezoneService;
+import cn.me.service.IDecidezoneService;
 import cn.me.web.action.base.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 @Scope("prototype")
 public class DecidezoneAction extends BaseAction<Decidedzone>{
     @Autowired
-    private DecidezoneService decidezoneService;
+    private IDecidezoneService decidezoneService;
 
     private String[] subareaid;
 

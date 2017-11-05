@@ -1,12 +1,11 @@
 package cn.me.service.impl;
 
-import cn.me.dao.StaffDao;
+import cn.me.dao.IStaffDao;
 import cn.me.domain.Staff;
-import cn.me.service.StaffService;
+import cn.me.service.IStaffService;
 import cn.me.utils.PageBean;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,9 @@ import java.util.List;
 
 @Service
 @Transactional
-public class StaffServiceImpl implements StaffService{
+public class StaffServiceImpl implements IStaffService {
     @Autowired
-    private StaffDao staffDao;
+    private IStaffDao staffDao;
 
 
     public String add(Staff model) {

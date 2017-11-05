@@ -5,7 +5,7 @@ import cn.me.utils.PageBean;
 
 import java.util.List;
 
-public interface StaffService {
+public interface IStaffService {
 
     String add(Staff model);
 
