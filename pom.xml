@@ -13,6 +13,7 @@
         <module>bos-dao</module>
         <module>bos-utils</module>
         <module>bos-domain</module>
+        <module>crm</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
