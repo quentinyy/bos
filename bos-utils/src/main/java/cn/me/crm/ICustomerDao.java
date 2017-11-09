@@ -9,6 +9,7 @@ import java.util.List;
 public interface ICustomerDao {
     List<Customer> findCustomerNotAssociate();
     List<Customer> findCustomerAssociate(String decidedzzone_id);
-
     void associate(String id, String[] customerIds);
+    Customer findCustomerByTelephone(String telephone);
+    String findDecidedzoneByAdress(String adress);
 }
