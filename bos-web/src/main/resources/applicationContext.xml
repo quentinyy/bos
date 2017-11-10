@@ -73,7 +73,11 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="bosRealm"></property>
     </bean>
+    <bean id="defaultAdvisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="proxyTargetClass" value="true"></property>
+    </bean>
 
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"></bean>
 
     <jaxws:client id="cuDao" serviceClass="cn.me.crm.ICustomerDao" address="http://localhost:8080/ws/customer">
     </jaxws:client>

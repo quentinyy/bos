@@ -39,7 +39,7 @@
 					}
 				}           
 			],
-			url : '',
+			url : 'functionAction_queryPage.action',
 			columns : [[
 			  {
 				  field : 'id',
@@ -57,7 +57,7 @@
 				  width : 200
 			  },  
 			  {
-				  field : 'generateMenu',
+				  field : 'generatemenu',
 				  title : '是否生成菜单',
 				  width : 200
 			  },  

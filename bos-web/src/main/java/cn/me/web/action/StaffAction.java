@@ -3,6 +3,7 @@ package cn.me.web.action;
 import cn.me.domain.Staff;
 import cn.me.service.IStaffService;
 import cn.me.web.action.base.BaseAction;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,7 @@ public class StaffAction extends BaseAction<Staff>{
     public void setIds(String ids) {
         this.ids = ids;
     }
-
+    @RequiresPermissions("staff.delete")
     public String delete() throws Exception {
         System.out.println(ids);
         staffService.delete(ids);

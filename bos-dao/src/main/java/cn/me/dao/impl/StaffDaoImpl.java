@@ -6,6 +6,6 @@ import cn.me.domain.Staff;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StaffActionImpl extends BaseDaoImpl<Staff> implements IStaffDao {
+public class StaffDaoImpl extends BaseDaoImpl<Staff> implements IStaffDao {
 
 }

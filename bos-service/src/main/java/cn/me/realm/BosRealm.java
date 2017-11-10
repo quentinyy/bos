@@ -4,10 +4,13 @@ import cn.me.dao.IUserDao;
 import cn.me.domain.User;
 import cn.me.service.IUserService;
 import cn.me.utils.MD5Utils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,10 @@ public class BosRealm extends AuthorizingRealm{
     private IUserDao userDao;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addStringPermission("staff-list");
+        return info;
     }
 
     @Override
