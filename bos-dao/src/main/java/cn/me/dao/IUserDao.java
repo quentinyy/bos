@@ -5,4 +5,5 @@ import cn.me.domain.User;
 
 public interface IUserDao extends BaseDao<User>{
     User findUserByNameAndPwd(String name, String password);
+    User findUserByUsername(String username);
 }

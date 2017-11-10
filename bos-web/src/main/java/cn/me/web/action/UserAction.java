@@ -6,6 +6,11 @@ import cn.me.service.IUserService;
 import cn.me.utils.MD5Utils;
 import cn.me.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -32,7 +37,16 @@ public class UserAction extends BaseAction<User>{
             addActionError("验证码错误");
             return LOGIN;
         }
-        User user = userService.login(model);
+        Subject subject = SecurityUtils.getSubject();
+        AuthenticationToken token = new UsernamePasswordToken(model.getUsername(),MD5Utils.md5(model.getPassword()));
+        try {
+            subject.login(token);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return LOGIN;
+        }
+
+        User user = (User) subject.getPrincipal();
         if(user != null){
             ActionContext.getContext().getSession().put("loginUser",user);
             return HOME;

@@ -52,6 +52,29 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/login.jsp"></property>
+        <property name="successUrl" value="/index.jsp"></property>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+        <property name="filterChainDefinitions">
+            <value>
+                /css/** = anon
+                /js/** = anon
+                /images/** = anon
+                /validatecode.jsp* = anon
+                /login.jsp = anon
+                /userAction_login.action = anon
+                /page_base_staff.action = perms["staff-list"]
+                /* = authc
+            </value>
+        </property>
+    </bean>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="bosRealm"></property>
+    </bean>
+
+
     <jaxws:client id="cuDao" serviceClass="cn.me.crm.ICustomerDao" address="http://localhost:8080/ws/customer">
     </jaxws:client>
     <tx:annotation-driven/>

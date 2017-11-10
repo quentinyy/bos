@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements IUserService {
@@ -21,4 +23,5 @@ public class UserServiceImpl implements IUserService {
     public void editPwd(String password, String id) {
         userDao.execUpdate("user.editPwd",password,id);
     }
+
 }
