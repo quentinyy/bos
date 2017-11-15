@@ -29,7 +29,8 @@
         <action name="userAction_*" class="userAction" method="{1}">
             <result name="login">/login.jsp</result>
             <result name="home">/index.jsp</result>
-            <allowed-methods>login,loginOut,editPwd</allowed-methods>
+            <result name="list">/WEB-INF/pages/admin/userlist.jsp</result>
+            <allowed-methods>login,loginOut,editPwd,add,queryPage</allowed-methods>
         </action>
         <action name="staffAction_*" class="staffAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/staff.jsp</result>
@@ -60,7 +61,11 @@
         </action>
         <action name="functionAction_*" class="functionAction" method="{1}">
             <result name="list">/WEB-INF/pages/admin/function.jsp</result>
-            <allowed-methods>ajaxlist,add,queryPage</allowed-methods>
+            <allowed-methods>ajaxlist,add,queryPage,findMenu</allowed-methods>
+        </action>
+        <action name="roleAction_*" class="roleAction" method="{1}">
+            <result name="list">/WEB-INF/pages/admin/role.jsp</result>
+            <allowed-methods>add,queryPage,ajaxlist</allowed-methods>
         </action>
     </package>
 

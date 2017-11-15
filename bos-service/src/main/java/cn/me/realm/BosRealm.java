@@ -1,6 +1,8 @@
 package cn.me.realm;
 
+import cn.me.dao.IFunctionDao;
 import cn.me.dao.IUserDao;
+import cn.me.domain.Function;
 import cn.me.domain.User;
 import cn.me.service.IUserService;
 import cn.me.utils.MD5Utils;
@@ -14,15 +16,23 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BosRealm extends AuthorizingRealm{
     @Autowired
     private IUserDao userDao;
+    @Autowired
+    private IFunctionDao functionDao;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addStringPermission("staff-list");
+        List<Function> list = functionDao.findFunctionByUserId(user.getId());
+        for (Function f:list
+             ) {
+            info.addStringPermission(f.getCode());
+        }
         return info;
     }
 

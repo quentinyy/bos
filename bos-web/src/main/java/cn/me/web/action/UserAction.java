@@ -1,6 +1,7 @@
 package cn.me.web.action;
 
 import cn.me.crm.ICustomerDao;
+import cn.me.domain.Function;
 import cn.me.domain.User;
 import cn.me.service.IUserService;
 import cn.me.utils.MD5Utils;
@@ -15,6 +16,8 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Controller
 @Scope("prototype")
@@ -74,4 +77,21 @@ public class UserAction extends BaseAction<User>{
         ServletActionContext.getResponse().getWriter().write(f);
         return NONE;
     }
+
+    private String[] roleIds;
+
+    public void setRoleIds(String[] roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public String add() throws Exception {
+        userService.save(model,roleIds);
+        return LIST;
+    }
+    public String queryPage()throws Exception{
+        userService.queryPage(pageBean);
+        java2json(pageBean,new String[]{"noticebills","roles"});
+        return NONE;
+    }
+
 }

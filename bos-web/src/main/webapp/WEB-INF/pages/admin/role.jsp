@@ -47,7 +47,7 @@
 					}
 				}           
 			],
-			url : '',
+			url : 'roleAction_queryPage.action',
 			columns : [[
 				{
 					field : 'id',

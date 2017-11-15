@@ -77,6 +77,10 @@
         <property name="proxyTargetClass" value="true"></property>
     </bean>
 
+    <bean name="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+    </bean>
+
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"></bean>
 
     <jaxws:client id="cuDao" serviceClass="cn.me.crm.ICustomerDao" address="http://localhost:8080/ws/customer">

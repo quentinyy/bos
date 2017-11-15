@@ -34,5 +34,11 @@ public class FunctionServiceImpl implements IFunctionService{
         return list;
     }
 
+    @Override
+    public List<Function> findMenu(String id) {
+        List<Function> list = functionDao.findMenu(id);
+        return list;
+    }
+
 
 }

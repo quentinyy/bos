@@ -12,4 +12,6 @@ public interface IFunctionService {
     void save(Function model);
 
     List<Function> ajaxlist( );
+
+    List<Function> findMenu(String id);
 }

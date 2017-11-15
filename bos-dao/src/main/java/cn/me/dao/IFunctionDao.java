@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface IFunctionDao extends BaseDao<Function>{
     public List<Function> findAll();
+
+    List<Function> findFunctionByUserId(String id);
+
+    List<Function> findMenu(String id);
 }
